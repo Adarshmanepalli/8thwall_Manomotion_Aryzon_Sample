@@ -29,7 +29,6 @@ Scene settings gist:
 Cameras:
 1) First Person Camera (MainCamera) [Depth only, cull everything, depth -10]
 2) FrameClone with XRVideoController writing to render texture used by Manomotion [Solid color, cull nothing, depth -20]
-3) Clear camera [Solid color, cull nothing, depth -15] (not sure this is required though)
 
 Note: you may also need to install Aryzon official app and calibrate your headset first.  
 Then copy the calibration code, disable ManoCalibration script and paste it in the app if it asks for it.
