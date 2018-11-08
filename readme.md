@@ -15,11 +15,34 @@ Tested on Unity 2018.2.2f1 64bit, Windows, Android 7.1.1
 ```
 7. (using XR video texture instead of second camera with XRVideoController) Patch ManoMotionManagerARCore.cs:
 ```
+    private void InitializeManoMotionManagerARcore()
+    {
+        ScaleRenderTexture();
+        frameTexture = new Texture2D(render_texture.width, render_texture.height);
+        framePixels = new Color32[render_texture.width * render_texture.height];
++        rotated = new Color32 [render_texture.width * render_texture.height];
+    }
     new void Update()
     {
 +        Graphics.Blit (xrController.GetRealityRGBATexture (), render_texture);
         ProcessARCoreFrame ();
     }
+
+...
++        // FIXME: This should rotate the texture
++        int count = 0, width = frameTexture.width, height = frameTexture.height;
++        for (int i = 0; i < width; i++) {
++            for (int j = 0; j < height; j++) {
++                rotated [count] = framePixels [j * width + i];
++                count++;
++            }
++        }
++
++        rotated.CopyTo(_pixels, 0);
+-        framePixels.CopyTo(_pixels, 0);
+    }
+
++    static Color32 [] rotated;
 ```
 FIXME: This gives a rotated hand texture
 8. Setup your app bundle id
