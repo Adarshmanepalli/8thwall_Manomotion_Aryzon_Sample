@@ -13,7 +13,7 @@ Tested on Unity 2018.2.2f1 64bit, Windows, Android 7.1.1
 
     Matrix4x4 mWarp = Matrix4x4.identity;
 ```
-7. (using XR video texture instead of second camera with XRVideoController) Patch ManoMotionManagerARCore.cs:
+7. (Reusing XR camera texture instead of the second camera with XRVideoController) Patch ManoMotionManagerARCore.cs:
 ```
     private void InitializeManoMotionManagerARcore()
     {
@@ -44,7 +44,7 @@ Tested on Unity 2018.2.2f1 64bit, Windows, Android 7.1.1
 
 +    static Color32 [] rotated;
 ```
-FIXME: This gives a rotated hand texture
+FIXME: The rotation code seems to work incorrectly - maybe reuse the approach from 8thwall' XRMaterial matrix transforms?
 8. Setup your app bundle id
 9. Enter Manomotion and 8thwall API keys and make sure you are using a matching bundle id (XR -> App key settings; ManoMotionManagerARCore -> Serial_key)
 10. Deploy, turn phone into landscape and put into Aryzon headset
